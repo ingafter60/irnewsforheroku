@@ -1,0 +1,23 @@
+{%extends "news/master.html"%}
+{% load humanize %}
+
+{%block content%}
+	{%if news_list%}
+	<dl>
+	{%for news in news_list %}
+	  <dt>{{news.text}}</dt>
+	  <dd>
+	  	<a href="{%url 'detail' pk=news.id%}">{{news.created_on|naturaltime}}</a> by @{{news.created_by}}
+	  	{%if news.via%}
+	  	 <a href="{{news.via}}">/via</a>
+	  	{%endif%}
+	  	{%if news.created_by == user%}
+	  	<a href="{%url 'editnews' pk=news.id%}">edit this</a>
+	  	{%endif%}
+	{%endfor%}
+	</dl>
+	{%else %}
+	No newss.
+	{%endif%}
+{%endblock%}
+

@@ -1,0 +1,14 @@
+{%extends "news/master.html"%}
+
+{%block title%}News details{%endblock%}
+
+{%block content%}
+	<dl>
+		<dd>{{news.text}}</dd>
+		<dt>{{news.created_on}}
+			{%if news.via%}
+			<a href="{{news.via}}">/via</a>
+			{%endif%}
+		</dt>
+	</dd>
+{%endblock%}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'blat/style.css' %}">
+    <title>{%block title%}News: All the news you don't care about{%endblock%}</title>
+</head>
+
+<body>
+	<header>
+	<h1><a href="{%url 'homepage'%}">News App</a></h1>
+	<nav>
+		<ul>
+		{% if user.is_authenticated %}
+			<li>Logged in as: {{user}}. {{user.profile.bio}}
+				{%if user.profile.blog%}<a href="{{user.profile.blog}}">blog</a>{%endif%}
+			</li>
+			<li><a href="{%url 'newnews'%}">Share a blat</a></li>
+			<li><a href="{% url 'myview' %}">My news</a></li>
+			<li><a href="{%url 'logout'%}?next=/">Logout</a></li>
+		{%else %}
+			<li><a href="/login/?next=/">Log in<a></li>
+		{% endif %}
+	</nav>
+	</header>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

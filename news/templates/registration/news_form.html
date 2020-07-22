@@ -1,0 +1,10 @@
+{%extends "news/master.html"%}
+
+{%block content%}
+	<form action="" method="post">
+		<input type="hidden" name="next" value="{{next}}">
+		{{form.as_p}}
+		<button type="submit">Login</button>
+		{% csrf_token %}
+	</form>
+{%endblock%}
